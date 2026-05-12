@@ -1,0 +1,180 @@
+/* ユーザー、招待、ユーザーメニュー周りのスタイルです。 */
+.user-avatar-button,
+.avatar {
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  font-weight: 720;
+  flex: 0 0 auto;
+}
+
+/* ヘッダー右上のログインユーザーアイコンです。 */
+.user-avatar-button {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  color: var(--text);
+  background: var(--panel-muted);
+  font-size: 12px;
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  font-size: 13px;
+}
+
+/* 招待UIとユーザーメニュー共通の浮動パネルです。 */
+.popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: min(312px, calc(100vw - 24px));
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: var(--shadow);
+  z-index: 30;
+}
+
+/* 招待検索フォームの配置です。 */
+.invite-form {
+  display: grid;
+  gap: 10px;
+}
+
+.invite-search-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 8px;
+  align-items: center;
+}
+
+/* 検索中ラベルを入力欄の右端へ重ねます。 */
+.search-field {
+  position: relative;
+  min-width: 0;
+}
+
+.search-field .input {
+  padding-right: 66px;
+}
+
+.searching-label {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-soft);
+  font-size: 11px;
+  pointer-events: none;
+}
+
+/* 検索候補一覧です。 */
+.candidate-list {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+/* 検索候補1件分のボタンです。 */
+.candidate-button {
+  width: 100%;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text);
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr);
+  align-items: center;
+  gap: 9px;
+  padding: 8px;
+  text-align: left;
+}
+
+.candidate-button:hover {
+  background: var(--panel-muted);
+}
+
+/* 長い名前やメールがはみ出さないように省略します。 */
+.candidate-name,
+.candidate-meta,
+.selected-user span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.candidate-name {
+  display: block;
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.candidate-meta {
+  display: block;
+  color: var(--text-soft);
+  font-size: 11px;
+  margin-top: 1px;
+}
+
+/* 選択済み候補の確認表示です。 */
+.selected-user {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  background: var(--accent-soft);
+  border-radius: 8px;
+  padding: 7px 8px;
+}
+
+.selected-user span {
+  font-size: 12px;
+  color: var(--accent-strong);
+  font-weight: 680;
+}
+
+/* ユーザーアバターから開くメニューです。 */
+.menu {
+  padding: 6px;
+  width: 190px;
+}
+
+.menu-button {
+  width: 100%;
+  min-height: 36px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px;
+  text-align: left;
+  font-size: 13px;
+}
+
+.menu-button svg {
+  width: 15px;
+  height: 15px;
+}
+
+.menu-button:hover {
+  background: var(--panel-muted);
+  color: var(--text);
+}
+
+.menu-button.danger {
+  color: var(--danger);
+}

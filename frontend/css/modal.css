@@ -1,0 +1,61 @@
+/* グループ作成モーダルのスタイルです。 */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background: rgba(8, 11, 16, 0.46);
+  padding: 0;
+}
+
+/* モバイルでは下から出るシート、PCでは中央モーダルとして使います。 */
+.modal {
+  width: min(100%, 360px);
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: 8px 8px 0 0;
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+.modal h2 {
+  margin: 0 0 18px;
+  font-size: 16px;
+  font-weight: 720;
+}
+
+/* グループアイコン候補のグリッドです。 */
+.emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 8px;
+}
+
+/* 絵文字候補1つ分のボタンです。 */
+.emoji-button {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  font-size: 20px;
+  display: grid;
+  place-items: center;
+  transition: background 140ms ease, border-color 140ms ease;
+}
+
+.emoji-button:hover,
+.emoji-button.is-active {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* キャンセル/作成ボタンの行です。 */
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 20px;
+}

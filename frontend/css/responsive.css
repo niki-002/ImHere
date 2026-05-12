@@ -1,0 +1,82 @@
+/* 画面幅ごとのレイアウト調整をまとめます。 */
+@media (min-width: 640px) {
+  /* タブレット以上ではモーダルを中央寄せにします。 */
+  .modal-backdrop {
+    align-items: center;
+    padding: 24px;
+  }
+
+  .modal {
+    border-radius: 8px;
+  }
+}
+
+@media (min-width: 768px) {
+  /* PC幅ではサイドバーを表示し、モバイルナビを隠します。 */
+  .sidebar {
+    display: flex;
+  }
+
+  .topbar,
+  .status-bar {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .content {
+    padding: 22px 24px;
+  }
+
+  .members-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .mobile-nav {
+    display: none;
+  }
+
+  .toast-region {
+    bottom: 18px;
+  }
+}
+
+@media (min-width: 1120px) {
+  /* 横幅が広い時はメンバーカード列を増やします。 */
+  .members-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1440px) {
+  .members-grid {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 420px) {
+  /* 狭いスマホではヘッダーや招待UIを詰めて表示します。 */
+  .topbar {
+    padding: 10px 12px;
+  }
+
+  .group-heading .group-icon {
+    display: none;
+  }
+
+  .button span.optional-label {
+    display: none;
+  }
+
+  .members-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .invite-search-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .invite-search-row .icon-button {
+    grid-column: 2;
+  }
+}
