@@ -5,7 +5,7 @@ from collections import defaultdict
 from fastapi import APIRouter, Depends, HTTPException, WebSocket, WebSocketDisconnect, status
 from sqlalchemy.orm import Session
 
-from ..db import SessionLocal, get_db
+from ..db import session, get_db
 from ..models import User
 from ..schemas import operation as schema
 from ..service import auth as auth_service
@@ -37,11 +37,6 @@ class GroupConnectionManager:
 
 
 manager = GroupConnectionManager()
-
-
-@router.get("/")
-def root() -> dict[str, str]:
-    return {"message": "Hello, World!"}
 
 
 @router.get("/groups", response_model=list[schema.GroupResponse])
@@ -170,7 +165,7 @@ async def group_status_websocket(websocket: WebSocket, group_id: int) -> None:
         await websocket.close(code=status.WS_1008_POLICY_VIOLATION)
         return
 
-    db = SessionLocal()
+    db = session()
     try:
         user = auth_service.get_user_from_token(db, token)
         service.require_group_member(db, group_id, user.id)
