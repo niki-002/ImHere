@@ -101,23 +101,23 @@ cp .env.example .env
 `.env` の `DATABASE_URL`、`SECRET_KEY`、`CORS_ORIGINS`、`FRONTEND_URL` を自分の環境に合わせます。
 
 ```env
-APP_NAME=ImHere API
-APP_ENV=development
+APP_NAME =
+APP_ENV =
 
-DATABASE_URL=postgresql+psycopg2://username:password@localhost:5432/imhere
-TEST_DATABASE_URL=postgresql+psycopg2://username:password@localhost:5432/imhere_test
+DATABASE_URL = 
+TEST_DATABASE_URL = 
 
-SECRET_KEY=replace-this-with-a-random-string-of-at-least-32-characters
-JWT_ALGORITHM=HS256
-ACCESS_TOKEN_EXPIRE_MINUTES=10080
+SECRET_KEY = 
+ALGORITHM = 
+ACCESS_TOKEN_EXPIRE_MINUTES = 
 
-CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
-FRONTEND_URL=http://localhost:3000
+CORS_ORIGINS = 
+FRONTEND_URL = 
 
-GOOGLE_CLIENT_IDS=
-GOOGLE_JWKS_URL=https://www.googleapis.com/oauth2/v3/certs
-APPLE_CLIENT_IDS=
-APPLE_JWKS_URL=https://appleid.apple.com/auth/keys
+GOOGLE_CLIENT_IDS =
+GOOGLE_JWKS_URL = 
+APPLE_CLIENT_IDS =
+APPLE_JWKS_URL =
 ```
 
 `JWT_ALGORITHM` は `ALGORITHM` という名前でも読み込めます。
@@ -230,14 +230,14 @@ Google / Apple ログインでは、フロントエンドから送られた `id_
 `.env` に client id が未設定の場合、OAuth ログインは `503` で止まります。
 
 ```env
-GOOGLE_CLIENT_IDS=xxxxxxxxxxxx.apps.googleusercontent.com
-APPLE_CLIENT_IDS=com.example.imhere
+GOOGLE_CLIENT_IDS=
+APPLE_CLIENT_IDS=
 ```
 
 複数の client id を許可する場合はカンマ区切りで設定します。
 
 ```env
-GOOGLE_CLIENT_IDS=dev-client-id.apps.googleusercontent.com,prod-client-id.apps.googleusercontent.com
+GOOGLE_CLIENT_IDS=
 ```
 
 `GOOGLE_JWKS_URL` と `APPLE_JWKS_URL` は ID トークンの署名検証に使います。外部認証を使わない場合は client id を空のままにしておけます。
@@ -298,5 +298,5 @@ Google ログインを使う場合は、Google Cloud Console で発行した cli
 フロントエンドの URL を `CORS_ORIGINS` に追加してください。
 
 ```env
-CORS_ORIGINS=http://localhost:3000,http://127.0.0.1:3000,http://localhost:5500
+CORS_ORIGINS=
 ```
