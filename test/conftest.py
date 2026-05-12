@@ -18,10 +18,10 @@ if str(PROJECT_ROOT) not in sys.path:
 
 load_dotenv(PROJECT_ROOT / ".env", override=False)
 
-database_url = os.environ.get("TEST_DATABASE_URL") or os.environ.get("DATABASE_URL")
+database_url = os.environ.get("TEST_DATABASE_URL")
 if not database_url:
     raise RuntimeError(
-        "ImHere/.env に DATABASE_URL または TEST_DATABASE_URL を設定してください。"
+        "ImHere/.env に TEST_DATABASE_URL を設定してください。"
     )
 
 os.environ["DATABASE_URL"] = database_url
