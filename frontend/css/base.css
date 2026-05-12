@@ -66,7 +66,7 @@ svg {
 .brand-mark {
   width: 42px;
   height: 42px;
-  border-radius: 8px;
+  border-radius: 0px;
   display: grid;
   place-items: center;
   background: var(--accent);
@@ -84,7 +84,7 @@ svg {
 .button {
   min-height: 38px;
   border: 1px solid transparent;
-  border-radius: 8px;
+  border-radius: 0px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -134,7 +134,7 @@ svg {
   width: 32px;
   height: 32px;
   padding: 0;
-  border-radius: 8px;
+  border-radius: 0px;
   border: 1px solid transparent;
   display: inline-grid;
   place-items: center;
@@ -192,7 +192,7 @@ svg {
   width: 100%;
   min-height: 42px;
   border: 1px solid var(--line);
-  border-radius: 8px;
+  border-radius: 0px;
   background: var(--panel);
   color: var(--text);
   padding: 9px 11px;
@@ -215,7 +215,7 @@ svg {
   align-items: flex-start;
   gap: 9px;
   padding: 10px 11px;
-  border-radius: 8px;
+  border-radius: 0px;
   border: 1px solid color-mix(in srgb, var(--danger) 35%, transparent);
   background: var(--danger-soft);
   color: var(--danger);
@@ -288,7 +288,7 @@ svg {
 
 .toast {
   max-width: min(360px, calc(100vw - 32px));
-  border-radius: 8px;
+  border-radius: 0px;
   background: #151a22;
   color: #fff;
   padding: 10px 13px;

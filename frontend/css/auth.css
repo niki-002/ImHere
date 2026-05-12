@@ -47,14 +47,14 @@
   grid-template-columns: 1fr 1fr;
   gap: 4px;
   padding: 4px;
-  border-radius: 8px;
+  border-radius: 0px;
   background: var(--panel-muted);
   margin-bottom: 16px;
 }
 
 .segment-button {
   border: 0;
-  border-radius: 6px;
+  border-radius: 0px;
   background: transparent;
   color: var(--text-muted);
   min-height: 38px;
@@ -72,6 +72,6 @@
 .auth-card {
   border: 1px solid var(--line);
   background: var(--panel);
-  border-radius: 8px;
+  border-radius: 0px;
   padding: 24px;
 }
