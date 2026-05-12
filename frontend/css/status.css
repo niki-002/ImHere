@@ -1,0 +1,41 @@
+/* 自分のステータスを切り替える横スクロールUIです。 */
+.status-scroll {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.status-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* ステータス1つ分の選択チップです。 */
+.status-chip {
+  min-height: 34px;
+  flex: 0 0 auto;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--panel-muted);
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  font-size: 13px;
+  transition: background 140ms ease, border-color 140ms ease, color 140ms ease;
+}
+
+.status-chip:hover:not(:disabled) {
+  border-color: var(--line-strong);
+  color: var(--text);
+}
+
+/* 現在選択中のステータスを強調します。 */
+.status-chip.is-active {
+  border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-weight: 700;
+}

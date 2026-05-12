@@ -1,0 +1,311 @@
+/* 共通リセットと、アプリ全体で使う基本部品を定義します。 */
+* {
+  box-sizing: border-box;
+}
+
+/* 画面全体をSPAとして固定し、内部スクロールだけで扱います。 */
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  overflow: hidden;
+}
+
+/* フォーム部品はOS/ブラウザ差を抑えるためフォントを継承します。 */
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+svg {
+  display: block;
+}
+
+/* JS描画のルート要素です。 */
+.app-root {
+  width: 100vw;
+  height: 100vh;
+}
+
+/* 起動中や空状態で中央寄せに使う共通レイアウトです。 */
+.boot-screen,
+.empty-main {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boot-screen {
+  flex-direction: column;
+  gap: 10px;
+  color: var(--text-muted);
+}
+
+.boot-screen p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 650;
+}
+
+/* ImHereのロゴマーク共通スタイルです。 */
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: var(--accent);
+  color: #fff;
+  flex: 0 0 auto;
+}
+
+.brand-mark svg {
+  width: 23px;
+  height: 23px;
+  fill: currentColor;
+}
+
+/* 通常ボタンの基礎スタイルです。色違いはmodifierで上書きします。 */
+.button {
+  min-height: 38px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 13px;
+  color: var(--text);
+  background: var(--panel);
+  transition: background 140ms ease, border-color 140ms ease, color 140ms ease, opacity 140ms ease;
+  white-space: nowrap;
+}
+
+.button svg {
+  width: 16px;
+  height: 16px;
+}
+
+.button-primary {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  font-weight: 680;
+}
+
+.button-primary:hover:not(:disabled) {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+}
+
+.button-muted {
+  border-color: var(--line);
+  color: var(--text-muted);
+  background: var(--panel);
+}
+
+.button-muted:hover:not(:disabled) {
+  border-color: var(--line-strong);
+  background: var(--panel-muted);
+  color: var(--text);
+}
+
+.button-full {
+  width: 100%;
+}
+
+/* 小さなアイコンだけのボタンです。削除や閉じる操作で使います。 */
+.icon-button {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  display: inline-grid;
+  place-items: center;
+  color: var(--text-soft);
+  background: transparent;
+  transition: background 140ms ease, color 140ms ease;
+}
+
+.icon-button:hover:not(:disabled) {
+  background: var(--panel-muted);
+  color: var(--text);
+}
+
+.icon-button svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* フォームの縦並び・ラベル・入力欄の共通スタイルです。 */
+.form,
+.field {
+  display: grid;
+}
+
+.form {
+  gap: 16px;
+}
+
+.field {
+  gap: 7px;
+}
+
+.field-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.label {
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 620;
+}
+
+.hint {
+  margin: -3px 0 0;
+  color: var(--text-soft);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+/* テキスト入力のフォーカスリングを統一します。 */
+.input {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  padding: 9px 11px;
+  outline: none;
+  transition: border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+}
+
+.input::placeholder {
+  color: var(--text-soft);
+}
+
+.input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+/* フォームやページ上に表示するエラーメッセージです。 */
+.error-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 10px 11px;
+  border-radius: 8px;
+  border: 1px solid color-mix(in srgb, var(--danger) 35%, transparent);
+  background: var(--danger-soft);
+  color: var(--danger);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.error-box svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+
+/* 送信中ボタンで使う小さなローディング表示です。 */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-top-color: #fff;
+  animation: spin 700ms linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* データがない時や読み込み中のプレースホルダーです。 */
+.empty-state {
+  min-height: 210px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.empty-state svg {
+  width: 44px;
+  height: 44px;
+  color: var(--text-soft);
+}
+
+.empty-state h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 720;
+}
+
+.empty-state p {
+  margin: 0;
+  max-width: 360px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* toast.jsから差し込まれる通知の配置と見た目です。 */
+.toast-region {
+  position: fixed;
+  right: 16px;
+  bottom: 76px;
+  z-index: 80;
+  display: grid;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.toast {
+  max-width: min(360px, calc(100vw - 32px));
+  border-radius: 8px;
+  background: #151a22;
+  color: #fff;
+  padding: 10px 13px;
+  box-shadow: var(--shadow);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+/* 視覚的には隠しつつ、スクリーンリーダーには読ませる要素です。 */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
