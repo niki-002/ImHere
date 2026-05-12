@@ -55,8 +55,8 @@ def create_access_token(user_id: int) -> str:
     }
     return jwt.encode(
         payload,
-        settings.secret_key.get_secret_value(),
-        algorithm=settings.jwt_algorithm,
+        settings.secret_key,
+        algorithm=settings.algorithm,
     )
 
 
@@ -167,8 +167,8 @@ def _oauth_client(provider: auth_schema.OAuthProvider) -> PyJWKClient:
 
 def _provider_client_ids(provider: auth_schema.OAuthProvider) -> list[str]:
     if provider == "google":
-        return settings.google_client_ids
-    return settings.apple_client_ids
+        return settings.google_client_id_list
+    return settings.apple_client_id_list
 
 
 def verify_oauth_id_token(
@@ -326,8 +326,8 @@ def get_user_from_token(db: Session, token: str) -> User:
     try:
         payload = jwt.decode(
             token,
-            settings.secret_key.get_secret_value(),
-            algorithms=[settings.jwt_algorithm],
+            settings.secret_key,
+            algorithms=[settings.algorithm],
         )
         user_id = int(payload["sub"])
         if payload.get("typ") != "access":
