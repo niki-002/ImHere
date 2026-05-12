@@ -11,7 +11,7 @@
   min-height: 112px;
   border: 1px solid var(--line);
   background: var(--panel);
-  border-radius: 8px;
+  border-radius: 0px;
   padding: 12px;
   position: relative;
   transition: border-color 140ms ease;
