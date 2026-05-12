@@ -3,32 +3,26 @@ from collections.abc import Generator
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session, sessionmaker
 
-from .core.config import get_settings
+from .core.config import settings
 
 
-settings = get_settings()
-connect_args = (
-    {"check_same_thread": False}
-    if settings.database_url.startswith("sqlite")
-    else {}
-)
+DATABASE_URL = settings.database_url
 
 db_engine = create_engine(
-    settings.database_url,
-    connect_args=connect_args,
-    pool_pre_ping=not settings.database_url.startswith("sqlite"),
+    DATABASE_URL,
+    pool_pre_ping=True,
 )
 
-session = sessionmaker(
-    bind=db_engine,
+db_session = sessionmaker(
     autoflush=False,
     autocommit=False,
+    bind=db_engine,
 )
 
-
+session = db_session()
 
 def get_db() -> Generator[Session, None, None]:
-    db = session()
+    db = session
     try:
         yield db
     finally:

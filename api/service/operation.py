@@ -9,7 +9,7 @@ from sqlalchemy.orm import Session, selectinload
 from ..core.config import get_settings
 from ..models import Group, GroupMember, User, utc_now
 from ..schemas import operation as schema
-from .auth import get_user_by_username, normalize_username
+from .auth import get_user_by_username
 
 
 JST = timezone(timedelta(hours=9))
@@ -365,11 +365,6 @@ def create_invite_link(
     current_user: User,
 ) -> schema.InviteLinkResponse:
     group = require_group_owner(db, group_id, current_user.id)
-    if settings.frontend_url is None:
-        raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail="FRONTEND_URL が設定されていません",
-        )
 
     return schema.InviteLinkResponse(
         group_id=group.id,
