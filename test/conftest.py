@@ -11,6 +11,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.engine import Connection
 from sqlalchemy.orm import Session
 
+from api.core.config import settings  # noqa: E402
+
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
@@ -18,13 +20,9 @@ if str(PROJECT_ROOT) not in sys.path:
 
 load_dotenv(PROJECT_ROOT / ".env", override=False)
 
-database_url = os.environ.get("TEST_DATABASE_URL")
-if not database_url:
-    raise RuntimeError(
-        "ImHere/.env に TEST_DATABASE_URL を設定してください。"
-    )
-
-os.environ["DATABASE_URL"] = database_url
+TEST_DATABASE_URL = settings.test_database_url
+if not TEST_DATABASE_URL:
+    raise RuntimeError("ImHere/.env に TEST_DATABASE_URL を設定してください。")
 
 
 def _set_default_env(key: str, value: str) -> None:
@@ -44,14 +42,14 @@ _set_default_env("GOOGLE_JWKS_URL", "https://example.com/google/jwks")
 _set_default_env("APPLE_CLIENT_IDS", "")
 _set_default_env("APPLE_JWKS_URL", "https://example.com/apple/jwks")
 
-from api.core.config import get_settings  # noqa: E402
+
 from api.db import get_db  # noqa: E402
 from api.main import create_app  # noqa: E402
 from api.models import Base  # noqa: E402
 
 
 engine = create_engine(
-    get_settings().database_url,
+    TEST_DATABASE_URL,
     pool_pre_ping=True,
 )
 
